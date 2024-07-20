@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2qks2oq3lruf"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_fd044"]
+[ext_resource type="Script" path="res://Movement.cs" id="2_nyveq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emtmp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4n3mf"]
+metallic = 0.54
+metallic_specular = 0.73
+clearcoat_enabled = true
+clearcoat_roughness = 0.63
+refraction_enabled = true
+refraction_scale = 0.24
+
+[node name="Cave" type="Node3D"]
+
+[node name="Player" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.56884, 0)
+visible = false
+radius = 0.1
+script = ExtResource("1_fd044")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.677392, 0)
+script = ExtResource("2_nyveq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_emtmp")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CollisionShape3D"]
+transform = Transform3D(6.66667, -2.32525e-15, 2.32525e-15, 2.32525e-15, 6.66667, -2.32525e-15, -2.32525e-15, 2.32525e-15, 6.66667, 1.38776e-11, 0.464961, 1.38776e-11)
+
+[node name="Box" type="CSGBox3D" parent="."]
+transform = Transform3D(8.1, 0, 0, 0, 1, 0, 0, 0, 7.93, 0, 0, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_4n3mf")
+
+[node name="Cyan" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.209204, 0.531924, -0.820543, -0.275262, 0.837214, 0.472551, 0.938331, 0.127004, 0.321567, -0.49016, 1.49051, 1.56934)
+light_color = Color(5.04853e-06, 0.687314, 0.910913, 1)
+
+[node name="Magenta" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.79653, -0.311392, 0.518243, 2.98969e-16, 0.857167, 0.515038, -0.604599, 0.410243, -0.682759, 2.28832, 1.5366, -0.920958)
+light_color = Color(1, 0.521569, 1, 1)
